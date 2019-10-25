@@ -1,0 +1,39 @@
+{
+  "name": "chrome-extensions",
+  "description": "minifest",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "icons": {
+    "24": "assets/images/icon_32.png",
+    "48": "assets/images/icon_48.png"
+  },
+  "browser_action": {
+    "default_title": "shopReport",
+    "default_popup": "popup.html",
+    "default_icon": { "48": "assets/images/icon_48.png" }
+  },
+  "background": { "page": "background.html" },
+  "content_scripts": [
+    {
+      "js": [
+        "js/vendor_ui.dll.js",
+        "js/vendor_frame.dll.js",
+        "js/content.min.js"
+      ],
+      "matches" : ["*://*/*"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "<all_urls>",
+    "downloads",
+    "downloads.open",
+    "downloads.shelf",
+    "background",
+    "idle",
+    "tabs",
+    "activeTab",
+    "cookies"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

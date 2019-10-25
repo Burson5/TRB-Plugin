@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "esnext",
+    "target": "es5",
+    "moduleResolution": "node",
+    "types": ["node", "react", "react-dom", "chrome"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "jsx": "react",
+    "allowJs": true,
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"],
+      "~/*": ["src/*"]
+    }
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "transpileOnly": true
+  },
+  "compileOnSave": true,
+  "include": ["src/**/*"],
+  "exclude": [
+    "config",
+    "public",
+    "node_modules",
+    "build",
+    "dist",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "jest.config.js"
+  ]
+}
