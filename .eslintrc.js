@@ -38,7 +38,7 @@ module.exports = {
       version: 'detect'
     }
   },
-  plugins: ['react', 'import', 'typescript', '@typescript-eslint'],
+  plugins: ['react', 'import', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/indent': ['error', 2],
     indent: ['error', 2, { SwitchCase: 1 }],

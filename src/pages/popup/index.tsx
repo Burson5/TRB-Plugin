@@ -1,3 +1,7 @@
+// 模拟完整es2015+环境
+// import 'core-js/stable';
+// import 'regenerator-runtime/runtime';
+
 import React from 'react';
 import { render } from 'react-dom';
 import style from './style.scss';

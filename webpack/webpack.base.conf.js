@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const os = require('os');
 const HappyPack = require('happypack');
-const tsImportPluginFactory = require('ts-import-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -45,22 +44,9 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: 'pre',
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        options: {
-          getCustomTransformers: () => ({
-            before: [
-              tsImportPluginFactory({
-                libraryName: 'antd',
-                libraryDirectory: 'lib',
-                style: 'css'
-              })
-            ]
-          })
-        },
         exclude: /node_modules/,
-        include: dirs.src
+        use: 'happypack/loader?id=babel'
       },
       {
         test: /\.(json|conf)$/,
@@ -79,11 +65,15 @@ module.exports = {
         use: extractSass.extract({
           fallback: 'style-loader',
           use: [
-            // importLoaders=1 配置(css-loader作用于@import的资源之前)有多少个loader
-            // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader
-            // modules css模块
-            // localIdentName 查询参数，配置生成的ident
-            'css-loader?importLoaders=1&modules&localIdentName=[local]__[name]-[hash:base64:8]',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                modules: {
+                  localIdentName: '[local]__[name]-[hash:base64:8]'
+                }
+              }
+            },
             'sass-loader'
           ]
         })
